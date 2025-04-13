@@ -1,0 +1,12 @@
+apt install docker.io -y
+ps aux | grep gitlab-runner
+
+sudo usermod -aG docker gitlab-runner
+sudo su - gitlab-runner
+docker ps
+
+ps aux | grep splunk
+
+sudo usermod -aG docker splunk
+sudo su - splunk
+docker ps
