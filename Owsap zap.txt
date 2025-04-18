@@ -1,28 +1,25 @@
-wget https://github.com/zaproxy/zaproxy/releases/download/v2.16.0/ZAP_2_16_0_unix.sh
-chmod +x ZAP_2_16_0_unix.sh
-sudo apt install openjdk-17-jdk -y
 
-sudo ./ZAP_2_16_0_unix.sh
+# Update and install dependencies
+sudo apt update
+sudo apt install openjdk-17-jdk wget -y
 
+# Download and install OWASP ZAP
+cd /opt
+sudo wget https://github.com/zaproxy/zaproxy/releases/download/v2.16.0/ZAP_2_16_0_unix.sh
+sudo chmod +x ZAP_2_16_0_unix.sh
+sudo ./ZAP_2_16_0_unix.sh -q -dir /opt/zaproxy
 
-
-
-
-in the job::   - /opt/zaproxy/zap.sh -cmd -quickurl http://34.35.54.231 -quickout owasp-zap-report/report.html
-
-
-
-
-
-
-sudo chown gitlab-runner:gitlab-runner /opt/zaproxy/owasp-zap-report/report.html
-
-sudo chmod 777 /opt/zaproxy/owasp-zap-report/report.html
-
-sudo usermod -aG $(stat -c "%G" /opt/zaproxy/owasp-zap-report/report.html) gitlab-runner
-sudo chmod 770 /opt/zaproxy/owasp-zap-report/report.html
-ls -l /opt/zaproxy/owasp-zap-report/report.html
-
+# Create the report directory BEFORE running zap.sh
 sudo mkdir -p /opt/zaproxy/owasp-zap-report
 sudo chown -R gitlab-runner:gitlab-runner /opt/zaproxy/owasp-zap-report
 sudo chmod -R 777 /opt/zaproxy/owasp-zap-report
+
+# Run ZAP in quick scan mode (headless)
+sudo -u gitlab-runner /opt/zaproxy/zap.sh -cmd -quickurl http://34.35.54.231 -quickout /opt/zaproxy/owasp-zap-report/report.html
+
+# Fix permissions if needed (usually already set, but safe to reapply)
+sudo chown gitlab-runner:gitlab-runner /opt/zaproxy/owasp-zap-report/report.html
+sudo chmod 770 /opt/zaproxy/owasp-zap-report/report.html
+
+# Optional: Confirm it exists
+ls -l /opt/zaproxy/owasp-zap-report/report.html
