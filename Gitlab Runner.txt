@@ -32,3 +32,7 @@ sudo usermod -aG sudo gitlab-runner  # Add gitlab-runner to sudo group (optional
 sudo usermod -aG root gitlab-runner
 sudo chmod -R 777 /home/gitlab-runner
 sudo chmod -R 777 /etc/gitlab-runner
+
+--------
+Grant the permission to specific path
+sudo chown -R gitlab-runner:gitlab-runner /home/ubuntu
