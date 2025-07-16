@@ -12,8 +12,7 @@ Step 4: Verify GitLab Runner Installation
    gitlab-runner --version
 
 Step 5: Register the GitLab Runner
-   sudo gitlab-runner register
-
+  (get the command from Gitlab UI to register the Runner)
 
 
 
