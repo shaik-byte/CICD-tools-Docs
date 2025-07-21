@@ -35,3 +35,8 @@ sudo chmod -R 777 /etc/gitlab-runner
 --------
 Grant the permission to specific path
 sudo chown -R gitlab-runner:gitlab-runner /home/ubuntu
+
+-----------
+Command to instal java 17
+sudo apt install openjdk-17-jdk -y
+--------------------------
