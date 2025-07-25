@@ -1,5 +1,5 @@
 sudo apt update
-sudo apt install -y openjdk-11-jre wget unzip
+sudo apt install openjdk-17-jdk -y
 java -version
 cd /opt
 sudo wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-5.0.1.3006-linux.zip
